@@ -26,6 +26,15 @@ class House(models.Model):
 	lot_size = models.IntegerField(verbose_name="Lot Size (Acres)")
 	description = models.TextField()
 
+	# formatting for admin page listings
+	def __str__(self):
+		street = self.street1
+
+		if self.street2 != "":
+			street += " " + self.street2
+
+		return street + ", " + self.city + " " + self.state + " " + str(self.zip_code)
+
 class HousePhoto(models.Model):
 	house = models.ForeignKey(House, on_delete=models.CASCADE, null=True)
 	photo = models.ImageField()

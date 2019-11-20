@@ -11,6 +11,6 @@ class HousePhotoAdmin(admin.StackedInline):
 class HouseAdmin(admin.ModelAdmin):
 	inlines = [HousePhotoAdmin]
 
-@admin.register(HousePhoto)
+#@admin.register(HousePhoto)
 class HousePhotoAdmin(admin.ModelAdmin):
 	pass
