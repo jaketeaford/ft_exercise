@@ -64,6 +64,8 @@ function HouseSearchViewModel() {
 			data: data,
 			contentType: "application/json; charset=utf-8",
 			success: function(result){
+				self.houseResults([]);
+				
 				for (var i = 0; i < result.length; i++) {
 					// first we need to create an array of photo objects
 					var photos = ko.observableArray([]);
