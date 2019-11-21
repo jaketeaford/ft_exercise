@@ -25,7 +25,7 @@ SECRET_KEY = 'q!x=0+lh(&pjm*b14xm3fbq&q!1)6_#(3ct*ae+p-idvwqpogx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jaketeaford.com', '127.0.0.1',]
 
 # Application definition
 
