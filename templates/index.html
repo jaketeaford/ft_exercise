@@ -1,8 +1,9 @@
 <html>
 	{% load static %}
 	<head>
+		<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/js.cookie.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/knockout-min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
 		<link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 	</head>
 	<body>
@@ -17,7 +18,7 @@
 						<form data-bind="submit: submitSearch">
 							<input type="text" data-bind="value: mlsQuery" placeholder="MLS #"/>
 							<input type="text" data-bind="value: cityQuery" placeholder="City"/>
-							<select data-bind="value: selectedState, optionsCaption: 'State'">
+							<select data-bind="value: stateQuery, optionsText: 'State'">
 								<option value="Alabama">Alabama</option>
 								<option value="Alaska">Alaska</option>
 								<option value="Arizona">Arizona</option>
@@ -80,12 +81,35 @@
 				</div>
 				<div id="results-container">
 					<div id="results">
-						<ul data-bind="foreach: houses, visible: houses().lengh > 0">
-							
+						<ul data-bind="foreach: houseResults, visible: houseResults().length > 0">
+							<li class="house-result">
+								<div class="house-info">
+									<p data-bind="text: city_state"></p>
+									<p data-bind="text: address"></p>
+									<p data-bind="text: mls"></p>
+									<p data-bind="text: zip"></p>
+									<p data-bind="text: neighborhood"></p>
+									<p data-bind="text: price"></p>
+									<p data-bind="text: list_date"></p>
+									<p data-bind="text: bedrooms"></p>
+									<p data-bind="text: bathrooms"></p>
+									<p data-bind="text: garage_size"></p>
+									<p data-bind="text: sqft"></p>
+									<p data-bind="text: lot_size"></p>
+									<p data-bind="text: description"></p>
+								</div>
+								<div class="house-photos">
+									<ul data-bind="foreach: photos, visible: photos().length >0">
+										<li><img data-bind="attr: {src: img_src}"/></li>
+									</ul>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
+
+	<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
 </html>
