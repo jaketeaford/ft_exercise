@@ -39,6 +39,7 @@ class HousePhoto(models.Model):
 	house = models.ForeignKey(House, on_delete=models.CASCADE, null=True)
 	photo = models.ImageField()
 
+	# custom method to show image in admin interface entries rather than just the image URL
 	def image_tag(self):
 		return mark_safe('<img src="%s" height="200" />' % (self.photo.url))
 
