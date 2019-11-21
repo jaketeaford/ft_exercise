@@ -84,6 +84,7 @@
 						<ul data-bind="foreach: houseResults, visible: houseResults().length > 0">
 							<li class="house-result">
 								<div class="house-info">
+									<h3>Info</h3>
 									<p data-bind="text: city_state"></p>
 									<p data-bind="text: address"></p>
 									<p data-bind="text: mls"></p>
@@ -99,8 +100,9 @@
 									<p data-bind="text: description"></p>
 								</div>
 								<div class="house-photos">
-									<ul data-bind="foreach: photos, visible: photos().length >0">
-										<li><img data-bind="attr: {src: img_src}"/></li>
+									<h3>Photos</h3>
+									<ul data-bind="foreach: photos, visible: photos().length > 0">
+										<li><img data-bind="attr: {src: img_src}"/ height="150"></li>
 									</ul>
 								</div>
 							</li>
