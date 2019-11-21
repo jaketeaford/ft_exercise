@@ -4,12 +4,88 @@ body {
 
 #header{
 	background-color: #3F4448;
+	margin-bottom: 40px;
 }
 
 #header h1{
-	color: #EE8002;
+	color: white;
 	margin: 0;
 	padding: 5px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: normal;
+	display: inline-block;
+}
+
+#header a{
+	text-decoration: none;
+	float: right;
+	color: white;
+	font-weight: bold;
+	line-height: 48px;
+	font-family: Tahoma, Geneva, sans-serif;
+	padding: 0px 10px;
+}
+
+#header a:hover{
+	background-color: #EE8002;
+}
+
+#content-centered{
+	width: 800px;
+	margin: 0 auto;
+}
+
+#mls-query,
+#sqft-query,
+#zip-query{
+	width: 90px;
+}
+
+#city-query{
+	width: 110px;
+}
+
+#beds-query,
+#baths-query{
+	width: 50px;
+}
+
+#search-fields button,
+#state-query {
+	height: 34px;
+	padding: 0;
+}
+
+#search-fields{
+	width: 94%;
+	margin: 0 auto;
+}
+
+#results ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+.house-result div{
+	width: 25%;
+	float: left;
+}
+
+.house-result div h3,
+.house-result div p{
+	margin: 0 0 10px 0;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+.house-result div p{
+	font-size: 12px;
+}
+
+.house-photos a{
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	float: left;
 }

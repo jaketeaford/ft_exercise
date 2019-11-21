@@ -1,5 +1,4 @@
 // CSRF token setup as per Django docs
-
 var csrftoken = Cookies.get('csrftoken');
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
@@ -17,8 +16,7 @@ $.ajaxSetup({
 function House(data) {
 	this.mls = ko.observable(data.mls);
 	this.address = ko.observable(data.address);
-	this.city_state = ko.observable(data.city_state);
-	this.zip = ko.observable(data.zip);
+	this.city_state_zip = ko.observable(data.city_state_zip);
 	this.neighborhood = ko.observable(data.neighborhood);
 	this.price = ko.observable(data.price);
 	this.list_date = ko.observable(data.list_date);
@@ -49,6 +47,7 @@ function HouseSearchViewModel() {
 
 	// functionality
 	self.submitSearch = function() {
+		// build data object to send to Django view
 		var data = {
 			"mls": self.mlsQuery,
 			"city": self.cityQuery,
@@ -71,7 +70,9 @@ function HouseSearchViewModel() {
 
 					if (result[i]['photos'].length > 0) {
 						for (var j = 0; j < result[i]['photos'].length; j++){
+							// workaround for the Django model not having the media folder prefix
 							var formattedPhotoSrc = "/media/" + result[i]['photos'][j]['photo'];
+
 							photos.push(new Photo({ url: formattedPhotoSrc }))
 						}
 					}
@@ -83,22 +84,21 @@ function HouseSearchViewModel() {
 						address += " " + result[i]['street2'];
 					}
 
-					var cityState = result[i]['city'] + ", " + result[i]['state'];
+					var cityStateZip = result[i]['city'] + ", " + result[i]['state'] + " " + result[i]['zip_code'];
 
 					var houseData = {
-						mls: result[i]['mls_num'],
+						mls: "MLS# " + result[i]['mls_num'],
 						address: address,
-						city_state: cityState,
-						zip: result[i]['zip_code'],
-						neighborhood: result[i]['neighborhood'],
-						price: result[i]['sales_price'],
-						list_date: result[i]['list_date'],
-						bedrooms: result[i]['beds'],
-						bathrooms: result[i]['baths'],
+						city_state_zip: cityStateZip,
+						neighborhood: "Neighborhood: " + result[i]['neighborhood'],
+						price: "$" + result[i]['sales_price'],
+						list_date: "Listed on " + result[i]['list_date'],
+						bedrooms: result[i]['bed_count'] + " bedrooms",
+						bathrooms: result[i]['bath_count'] + " bathrooms",
 						photos: photos(),
 						garage_size: result[i]['garage_size'],
-						sqft: result[i]['sq_ft'],
-						lot_size: result[i]['lot_size'],
+						sqft: result[i]['sq_ft'] + " square feet",
+						lot_size: result[i]['lot_size'] + " acre lot",
 						description: result[i]['description']
 					}
 
